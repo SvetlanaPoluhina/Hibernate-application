@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="hibernate.dao.ResultsEntity" table="results" schema="db">
+        <id name="idResults">
+            <column name="id_results" sql-type="int(11)"/>
+        </id>
+        <property name="date">
+            <column name="date" sql-type="date"/>
+        </property>
+        <many-to-one name="testerByIdTester" class="hibernate.dao.TesterEntity">
+            <column name="id_tester"/>
+        </many-to-one>
+        <many-to-one name="linkTestsByIdLinkTests" class="hibernate.dao.LinkTestsEntity">
+            <column name="id_link_tests"/>
+        </many-to-one>
+        <many-to-one name="environmentByIdEnvironment" class="hibernate.dao.EnvironmentEntity">
+            <column name="id_environment"/>
+        </many-to-one>
+        <many-to-one name="versionByVer" class="hibernate.dao.VersionEntity">
+            <column name="№ver"/>
+        </many-to-one>
+        <many-to-one name="statusByIdStatus" class="hibernate.dao.StatusEntity">
+            <column name="id_status"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

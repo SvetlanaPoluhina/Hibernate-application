@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="hibernate.dao.VersionEntity" table="version" schema="db">
+        <id name="idVersion">
+            <column name="id_version" sql-type="int(11)"/>
+        </id>
+        <many-to-one name="systemUnderTestByIdSystem" class="hibernate.dao.SystemUnderTestEntity">
+            <column name="id_system"/>
+        </many-to-one>
+        <set name="resultsByIdVersion" inverse="true">
+            <key>
+                <column name="№ver"/>
+            </key>
+            <one-to-many not-found="ignore" class="hibernate.dao.ResultsEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="hibernate.dao.LinkTestsEntity" table="link_tests" schema="db">
+        <id name="idLinkTests">
+            <column name="id_link_tests" sql-type="int(11)"/>
+        </id>
+        <many-to-one name="testByIdTest" class="hibernate.dao.TestEntity">
+            <column name="id_test"/>
+        </many-to-one>
+        <many-to-one name="testSuiteByIdTestSuite" class="hibernate.dao.TestSuiteEntity">
+            <column name="id_test_suite"/>
+        </many-to-one>
+        <set name="resultsByIdLinkTests" inverse="true">
+            <key>
+                <column name="id_link_tests"/>
+            </key>
+            <one-to-many not-found="ignore" class="hibernate.dao.ResultsEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="hibernate.dao.EnvironmentEntity" table="environment" schema="db">
+        <id name="idEnvironment">
+            <column name="id_environment" sql-type="int(11)"/>
+        </id>
+        <property name="browser">
+            <column name="browser" sql-type="varchar(45)" length="45"/>
+        </property>
+        <set name="resultsByIdEnvironment" inverse="true">
+            <key>
+                <column name="id_environment"/>
+            </key>
+            <one-to-many not-found="ignore" class="hibernate.dao.ResultsEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>
